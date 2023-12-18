@@ -2,6 +2,7 @@ package io.github.yanburigo.math;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -85,6 +86,7 @@ class SimpleMathTest {
     }
     
     @Test
+    @Disabled("TODO: We need still work on it!")
     @DisplayName("Test Division by Zero")
     void testDivision_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticException() {
     	fail();
