@@ -3,11 +3,13 @@ package io.github.yanburigo;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @Order(3)
-class MethodOrderedByOrderTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) //Same class for all methods, similar singleton
+class MethodOrderedByOrderIndexTest {
 
 	@Test
 	void testA() {
