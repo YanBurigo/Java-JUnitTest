@@ -2,6 +2,10 @@ package io.github.yanburigo.math;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,12 +13,34 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Test Math Operations in SimpleMath Class")
 class SimpleMathTest {
 
+	SimpleMath math;
+	
+	@BeforeAll
+	static void setup() {
+		System.out.println("Running @BeforeAll method!");
+	}
+	
+	@AfterAll
+	static void cleanUp() {
+		System.out.println("Running @AfterAll method!");
+	}
+	
+	@BeforeEach
+	void beforeEachMethod() {
+		System.out.println("Running @BeforeEach method!");
+		math = new SimpleMath();
+	}
+	
+	@AfterEach
+	void afterEachMethod() {
+		System.out.println("Running @AfterEach method!");
+	}
+	
     @Test
     @DisplayName("Test 6.2 + 2 = 8.2")
     void testSum_When_SixDotTwoIsAddedByTwo_ShouldReturnEightDotTwo() {
     	
     	//Given
-        SimpleMath math = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expected = 8.2D;
@@ -33,7 +59,6 @@ class SimpleMathTest {
     void testSubtraction() {
     	
     	//Given
-        SimpleMath math = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expected = 4.2D;
@@ -52,7 +77,6 @@ class SimpleMathTest {
     void testMultiplication() {
     	
     	//Given
-        SimpleMath math = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expected = 12.4D;
@@ -71,7 +95,6 @@ class SimpleMathTest {
     void testDivision() {
     	
     	//Given
-        SimpleMath math = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expected = 3.1D;
@@ -88,8 +111,27 @@ class SimpleMathTest {
     @Test
     @Disabled("TODO: We need still work on it!")
     @DisplayName("Test Division by Zero")
-    void testDivision_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticException() {
+    void disabledTestExample() {
     	fail();
+    }
+    
+    @Test
+    @DisplayName("Test Division by Zero")
+    void testDivision_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticException() {
+    	
+    	//Given
+    	double firstNumber = 6.2D;
+        double secondNumber = 0D;
+        
+        var expectedMessage = "Impossible to divide by zero";
+        
+        //When & Then
+        ArithmeticException actual = assertThrows(ArithmeticException.class, () -> {
+        	math.division(firstNumber, secondNumber);
+        }, () -> "Division by zero should throw an ArithmeticException");
+        
+        //Then
+        assertEquals(expectedMessage, actual.getMessage(), () -> "Unexpected exception message!");
     }
     
     @Test
@@ -97,7 +139,6 @@ class SimpleMathTest {
     void testMean() {
     	
     	//Given
-        SimpleMath math = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expected = 4.1D;
@@ -116,7 +157,6 @@ class SimpleMathTest {
     void testSquareRoot() {
     	
     	//Given
-        SimpleMath math = new SimpleMath();
         double number = 81D;
         double expected = 9D;
         
